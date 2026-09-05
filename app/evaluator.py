@@ -1,3 +1,10 @@
+import sys
+from pathlib import Path
+
+root_dir = Path(__file__).resolve().parent.parent
+if str(root_dir) not in sys.path:
+    sys.path.insert(0, str(root_dir))
+
 import pandas as pd
 import numpy as np
 
@@ -6,47 +13,36 @@ def evaluate_reconciliation(
     gt_path: str = "data/ground_truth.csv",
     source_gt_col: str = "bank_ref",
     target_gt_col: str = "journal_id",
-    source_pred_col: str = None,
+    source_pred_col: str = "bank_ref",
     target_pred_col: str = None
 ):
     gt = pd.read_csv(gt_path)
     preds = pd.read_csv(preds_path)
 
-    # Auto-detect prediction columns if not explicitly provided
-    if source_pred_col is None:
-        possible_src = [c for c in preds.columns if 'bank' in c.lower() or 'ref' in c.lower() or 'src' in c.lower()]
-        source_pred_col = possible_src[0] if possible_src else preds.columns[0]
-
     if target_pred_col is None:
-        possible_tgt = [c for c in preds.columns if any(k in c.lower() for k in ['journal', 'ledger', 'invoice', 'matched', 'target'])]
-        target_pred_col = possible_tgt[0] if possible_tgt else preds.columns[1]
+        target_pred_col = target_gt_col
 
     print(f"\n=======================================================")
     print(f" EVALUATING: {preds_path}")
-    print(f" Matching '{source_pred_col}' -> '{target_pred_col}'")
-    print(f" Ground Truth: '{source_gt_col}' -> '{target_gt_col}'")
+    print(f" Source: '{source_pred_col}' -> Target: '{target_pred_col}'")
     print(f"=======================================================")
 
-    # Filter GT to rows that actually have both items present
     valid_gt = gt.dropna(subset=[source_gt_col, target_gt_col]).copy()
     valid_gt[source_gt_col] = valid_gt[source_gt_col].astype(str).str.strip()
     valid_gt[target_gt_col] = valid_gt[target_gt_col].astype(str).str.strip()
 
-    # Ground truth mapping: source -> target
     true_pairs = dict(zip(valid_gt[source_gt_col], valid_gt[target_gt_col]))
     total_true_matches = len(true_pairs)
 
-    # Normalize prediction columns
     preds[source_pred_col] = preds[source_pred_col].astype(str).str.strip()
     preds[target_pred_col] = preds[target_pred_col].astype(str).str.strip()
 
-    # Standardize status column lookup
     status_col = [c for c in preds.columns if 'status' in c.lower()][0]
 
     matched = preds[preds[status_col].str.upper() == 'MATCHED']
-    reviews = preds[preds[status_col].str.upper() == 'REVIEW']
-    ambiguous = preds[preds[status_col].str.upper() == 'AMBIGUOUS']
     unmatched = preds[preds[status_col].str.upper() == 'UNMATCHED']
+    reviews = preds[preds[status_col].str.upper() == 'REVIEW'] if 'REVIEW' in preds[status_col].values else pd.DataFrame()
+    ambiguous = preds[preds[status_col].str.upper() == 'AMBIGUOUS'] if 'AMBIGUOUS' in preds[status_col].values else pd.DataFrame()
 
     true_positives = 0
     false_positives = 0
@@ -64,8 +60,8 @@ def evaluate_reconciliation(
     recall = (true_positives / total_true_matches) if total_true_matches > 0 else 0.0
     f1 = (2 * precision * recall / (precision + recall)) if (precision + recall) > 0 else 0.0
 
-    print(f"Total Source Rows Checked : {len(preds)}")
-    print(f"Expected True Pairs in GT : {total_true_matches}")
+    print(f"Total Records Tested      : {len(preds)}")
+    print(f"Expected True Pairs       : {total_true_matches}")
     print(f"-------------------------------------------------------")
     print(f"Matches Declared (Engine) : {len(matched)}")
     print(f"  └─ True Positives (TP)  : {true_positives}")
@@ -81,17 +77,60 @@ def evaluate_reconciliation(
     print(f"  └─ Unmatched Queue      : {len(unmatched)}")
     print(f"=======================================================\n")
 
-if __name__ == "__main__":
-    # 1. Bank -> Ledger Evaluation
-    evaluate_reconciliation(
-        preds_path="data/bank_ledger_results.csv",
-        source_gt_col="bank_ref",
-        target_gt_col="journal_id"
-    )
+def evaluate_tax_and_closure(canonical_path="data/canonical_ledger.csv", gt_path="data/ground_truth.csv"):
+    gt = pd.read_csv(gt_path)
+    pred = pd.read_csv(canonical_path)
 
-    # 2. Bank -> Invoice Evaluation
-    evaluate_reconciliation(
-        preds_path="data/bank_invoice_results.csv",
-        source_gt_col="bank_ref",
-        target_gt_col="invoice_number"
-    )
+    print("\n=======================================================")
+    print(" TAX-LINE CLASSIFICATION & LOOP CLOSURE EVALUATION")
+    print("=======================================================")
+
+    correct_tax = 0
+    total_evaluable = 0
+    exceptions = []
+
+    for _, row in pred.iterrows():
+        b_ref = row.get('bank_ref')
+        j_id = row.get('journal_id')
+        inv_num = row.get('invoice_number')
+
+        gt_match = pd.DataFrame()
+        if pd.notna(b_ref) and 'bank_ref' in gt.columns:
+            gt_match = gt[gt['bank_ref'] == b_ref]
+        elif pd.notna(j_id) and 'journal_id' in gt.columns:
+            gt_match = gt[gt['journal_id'] == j_id]
+        elif pd.notna(inv_num) and 'invoice_number' in gt.columns:
+            gt_match = gt[gt['invoice_number'] == inv_num]
+
+        if not gt_match.empty:
+            total_evaluable += 1
+            true_tax = str(gt_match.iloc[0].get('tax_line', '')).strip().lower()
+            pred_tax = str(row.get('tax_line', '')).strip().lower()
+
+            if true_tax == pred_tax:
+                correct_tax += 1
+            else:
+                exceptions.append({
+                    'ref': b_ref or j_id or inv_num,
+                    'pred': row.get('tax_line'),
+                    'true': gt_match.iloc[0].get('tax_line'),
+                    'desc': row.get('description')[:40] if row.get('description') else ''
+                })
+
+    tax_acc = (correct_tax / total_evaluable) if total_evaluable > 0 else 0.0
+
+    print(f"Total Canonical Records Checked : {total_evaluable}")
+    print(f"Correct Tax Line Assignments    : {correct_tax}")
+    print(f"Tax-Line Accuracy Rate          : {tax_acc:.2%}")
+    print(f"Total Exceptions / Discrepancies: {len(exceptions)}")
+    print("-------------------------------------------------------")
+    if exceptions:
+        print("Sample Exceptions (first 5):")
+        for ex in exceptions[:5]:
+            print(f"  [{ex['ref']}] Pred: '{ex['pred']}' | True: '{ex['true']}' | Desc: '{ex['desc']}'")
+    print("=======================================================\n")
+
+if __name__ == "__main__":
+    evaluate_reconciliation("data/bank_ledger_results.csv", "data/ground_truth.csv", "bank_ref", "journal_id")
+    evaluate_reconciliation("data/bank_invoice_results.csv", "data/ground_truth.csv", "bank_ref", "invoice_number")
+    evaluate_tax_and_closure()

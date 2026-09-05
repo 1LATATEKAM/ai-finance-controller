@@ -1,101 +1,45 @@
+import sys
+from pathlib import Path
+
+root_dir = Path(__file__).resolve().parent.parent
+if str(root_dir) not in sys.path:
+    sys.path.insert(0, str(root_dir))
+
 import pandas as pd
+from app.reconcile import reconcile_bank_to_ledger, reconcile_bank_to_invoices
+from app.tax_matcher import build_unified_ledger
 
-from reconcile import (
-    match_bank_to_ledger,
-    match_bank_to_invoice
-)
+def main():
+    print("==================================================")
+    print("  AI FINANCE CONTROLLER: RUNNING FINANCE OPS LOOP")
+    print("==================================================")
 
+    bank_df = pd.read_csv("data/bank_statement.csv")
+    ledger_df = pd.read_csv("data/internal_ledger.csv")
+    invoices_df = pd.read_csv("data/invoices.csv")
 
-# ---------------------------------------------------------
-# LOAD DATA
-# ---------------------------------------------------------
+    # Step 1: Reconcile Cross-Source
+    print("[1/3] Reconciling Bank -> Ledger...")
+    bl_res = reconcile_bank_to_ledger(bank_df, ledger_df)
+    bl_res.to_csv("data/bank_ledger_results.csv", index=False)
 
-BANK_FILE = "data/bank_statement.csv"
-LEDGER_FILE = "data/internal_ledger.csv"
-INVOICE_FILE = "data/invoices.csv"
+    print("[2/3] Reconciling Bank -> Invoices...")
+    bi_res = reconcile_bank_to_invoices(bank_df, invoices_df)
+    bi_res.to_csv("data/bank_invoice_results.csv", index=False)
 
+    # Step 2: Unify and Map Tax Lines
+    print("[3/3] Building Canonical Ledger & Assigning Tax Lines...")
+    unified_df = build_unified_ledger(bank_df, ledger_df, invoices_df, bl_res, bi_res)
+    unified_df.to_csv("data/canonical_ledger.csv", index=False)
 
-bank_df = pd.read_csv(BANK_FILE)
-ledger_df = pd.read_csv(LEDGER_FILE)
-invoice_df = pd.read_csv(INVOICE_FILE)
+    print("\n--- RUN SUMMARY ---")
+    print(f"Total Unified Transactions : {len(unified_df)}")
+    print(f"3-Source Full Matches      : {len(unified_df[unified_df['match_source_count'] == 3])}")
+    print(f"2-Source Matches           : {len(unified_df[unified_df['match_source_count'] == 2])}")
+    print(f"Single-Source / Unmatched  : {len(unified_df[unified_df['match_source_count'] == 1])}")
+    print("\nTax Category Breakdown:")
+    print(unified_df['tax_line'].value_counts())
+    print("==================================================")
 
-
-print("\n====================================")
-print("AI FINANCE CONTROLLER")
-print("====================================")
-
-print(f"\nBank records:    {len(bank_df)}")
-print(f"Ledger records:  {len(ledger_df)}")
-print(f"Invoice records: {len(invoice_df)}")
-
-
-# ---------------------------------------------------------
-# BANK → LEDGER
-# ---------------------------------------------------------
-
-print("\n------------------------------------")
-print("BANK → LEDGER RECONCILIATION")
-print("------------------------------------")
-
-ledger_results = match_bank_to_ledger(
-    bank_df,
-    ledger_df
-)
-
-ledger_results.to_csv(
-    "data/bank_ledger_results.csv",
-    index=False
-)
-
-
-# ---------------------------------------------------------
-# BANK → INVOICE
-# ---------------------------------------------------------
-
-print("\n------------------------------------")
-print("BANK → INVOICE RECONCILIATION")
-print("------------------------------------")
-
-invoice_results = match_bank_to_invoice(
-    bank_df,
-    invoice_df
-)
-
-invoice_results.to_csv(
-    "data/bank_invoice_results.csv",
-    index=False
-)
-
-
-# ---------------------------------------------------------
-# SUMMARY
-# ---------------------------------------------------------
-
-print("\n====================================")
-print("RECONCILIATION SUMMARY")
-print("====================================")
-
-print("\nBank → Ledger:")
-print(
-    ledger_results["status"]
-    .value_counts()
-)
-
-
-print("\nBank → Invoice:")
-print(
-    invoice_results["status"]
-    .value_counts()
-)
-
-
-print("\nAverage Bank → Ledger confidence:",
-      round(ledger_results["confidence"].mean(), 3))
-
-print("Average Bank → Invoice confidence:",
-      round(invoice_results["confidence"].mean(), 3))
-
-
-print("\nResults saved:")
-print("→ data/bank_ledger_results.csv")
-print("→ data/bank_invoice_results.csv")
+if __name__ == "__main__":
+    main()
