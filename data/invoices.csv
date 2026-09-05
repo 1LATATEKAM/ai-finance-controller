@@ -1,0 +1,48 @@
+invoice_number,vendor,issue_date,due_date,amount,description
+INV-0001,Office Depot,2026-08-26,2026-09-25,3189.61,Printer consumables
+INV-0002,TransGlobal Airlines,2026-07-09,2026-08-08,2560.15,Conference airfare
+INV-0003,Marriott Hotels,2026-08-17,2026-09-16,479.96,Team offsite hotel
+INV-0004,Customer Epsilon,2026-08-06,2026-09-05,41332.7,Merchandise order
+INV-0005,Hertz Car Rental,2026-08-22,2026-09-21,1681.76,Team offsite hotel
+INV-0006,Mutual Shield Insurance,2026-07-23,2026-08-22,10495.45,Liability insurance premium
+INV-0007,Mutual Shield Insurance,2026-07-18,2026-08-17,9585.4,Liability insurance premium
+INV-0008,Globex Corporation,2026-07-17,2026-08-16,7933.77,Industrial materials
+INV-0009,Mutual Shield Insurance,2026-06-07,2026-07-07,3454.3,Property insurance
+INV-0010,Globex Corporation,2026-06-12,2026-07-12,59709.41,Packaging supplies
+INV-0011,Globex Corporation,2026-08-31,2026-09-30,2204.69,Industrial materials
+INV-0012,Customer Delta,2026-08-06,2026-09-05,4571.67,Consulting services
+INV-0013,Benefits Administration Co,2026-07-18,2026-08-17,5183.26,401k match
+INV-0014,Acme Industrial Supply,2026-08-21,2026-09-20,4496.24,Packaging supplies
+INV-0015,Hooli Marketing,2026-06-12,2026-07-12,983.13,Print advertising
+INV-0016,Payroll Services Inc,2026-07-23,2026-08-22,1236.92,Biweekly payroll
+INV-0017,City Power & Light,2026-08-30,2026-09-29,2935.72,Electricity bill
+INV-0018,Dewey Cheatem & Howe,2026-08-06,2026-09-05,34917.65,Tax advisory
+INV-0019,Acme Industrial Supply,2026-07-06,2026-08-05,34400.49,Raw materials batch
+INV-0020,Customer Beta,2026-06-06,2026-07-06,6019.0,Product sale
+INV-0021,Customer Epsilon,2026-07-09,2026-08-08,25164.22,Merchandise order
+INV-0022,Wayne Properties,2026-07-19,2026-08-18,975.07,Parking lease
+INV-0023,Wayne Properties,2026-07-18,2026-08-17,960.03,Parking lease
+INV-0024,Mutual Shield Insurance,2026-06-22,2026-07-22,2407.03,Liability insurance premium
+INV-0025,Pied Piper Ads,2026-07-21,2026-08-20,2315.85,Sponsored content
+INV-0026,Office Depot,2026-07-19,2026-08-18,9207.19,Printer consumables
+INV-0027,City Power & Light,2026-08-19,2026-09-18,1641.98,Water and sewer
+INV-0028,Marriott Hotels,2026-07-18,2026-08-17,39887.52,Client meeting travel
+INV-0029,Dewey Cheatem & Howe,2026-08-24,2026-09-23,4122.18,Tax advisory
+INV-0030,Dewey Cheatem & Howe,2026-06-13,2026-07-13,20653.91,Tax advisory
+INV-0031,Office Depot,2026-07-20,2026-08-19,33878.25,Printer consumables
+INV-0032,City Power & Light,2026-08-19,2026-09-18,9071.07,Water and sewer
+INV-0033,Wayne Properties,2026-06-20,2026-07-20,290.33,Monthly office rent
+INV-0034,Acme Industrial Supply,2026-08-08,2026-09-07,3987.95,Raw materials batch
+INV-0035,Pied Piper Ads,2026-08-26,2026-09-25,2201.75,Campaign media buy
+INV-0036,Northwind Logistics,2026-08-25,2026-09-24,8013.59,Shipping and handling
+INV-0037,Hooli Marketing,2026-06-06,2026-07-06,283.24,Print advertising
+INV-0038,Hooli Marketing,2026-06-06,2026-07-06,276.74,Print advertising
+INV-0039,Wayne Properties,2026-06-09,2026-07-09,1811.69,Monthly office rent
+INV-0040,First National Bank,2026-08-23,2026-09-22,8114.67,Monthly service fee
+INV-0041,Customer Delta,2026-08-11,2026-09-10,6464.01,Implementation services
+INV-0042,Dewey Cheatem & Howe,2026-08-27,2026-09-26,23785.73,Audit support
+INV-0043,First National Bank,2026-07-21,2026-08-20,408.82,Wire transfer fee
+INV-0044,Hooli Marketing,2026-08-03,2026-09-02,1646.05,Campaign media buy
+INV-0045,Customer Epsilon,2026-06-10,2026-07-10,10365.6,Merchandise order
+INV-0046,Payroll Services Inc,2026-07-22,2026-08-21,5038.26,Salary run
+INV-0047,Acme Industrial Supply,2026-08-12,2026-09-11,3400.0,"Pending delivery, not yet paid"

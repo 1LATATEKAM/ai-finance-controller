@@ -1,0 +1,7 @@
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Keep the hackathon scoring key private
+data/ground_truth.csv

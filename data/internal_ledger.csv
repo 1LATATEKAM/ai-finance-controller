@@ -1,0 +1,50 @@
+journal_id,date,account_code,debit_credit,amount,description
+JE-0001,2026-08-26,7000,DR,3189.61,Printer consumables - Office Depot
+JE-0002,2026-08-17,6600,DR,479.96,Team offsite hotel (ref 6541)
+JE-0003,2026-08-06,4000,CR,41332.7,Merchandise order (ref 4967)
+JE-0004,2026-08-22,6600,DR,1681.76,Team offsite hotel - Hertz Car Rental
+JE-0005,2026-08-25,6500,DR,2677.13,Saas license renewal - Initech Software
+JE-0006,2026-06-07,6900,DR,3454.3,Property insurance - Mutual Shield Insurance
+JE-0007,2026-06-18,6300,DR,4390.24,Monthly office rent - Wayne Properties
+JE-0008,2026-06-22,6500,DR,4018.59,Cloud hosting - Initech Software
+JE-0009,2026-08-31,5000,DR,2204.69,Industrial materials - Globex Corporation
+JE-0010,2026-08-06,4100,CR,4571.67,Consulting services - Customer Delta
+JE-0011,2026-07-18,6200,DR,5183.26,401k match - Benefits Administration Co
+JE-0012,2026-08-21,5000,DR,4496.24,Packaging supplies - Acme Industrial Supply
+JE-0013,2026-06-12,6700,DR,983.13,Print advertising - Hooli Marketing
+JE-0014,2026-07-23,6100,DR,1236.92,Biweekly payroll - Payroll Services Inc
+JE-0015,2026-08-30,6400,DR,2935.72,Electricity bill - City Power & Light
+JE-0016,2026-06-27,6400,DR,454.96,Internet service (ref 1713)
+JE-0017,2026-06-22,6900,DR,2407.03,Liability insurance premium - Mutual Shield Insurance
+JE-0018,2026-08-03,7200,DR,7095.55,Wire transfer fee - First National Bank
+JE-0019,2026-07-30,7200,DR,6739.65,Wire transfer fee - First National Bank
+JE-0020,2026-08-03,6500,DR,905.0,Annual subscription - Umbrella Cloud Services
+JE-0021,2026-07-19,7000,DR,9207.19,Printer consumables - Office Depot
+JE-0022,2026-08-19,6400,DR,1641.98,Water and sewer (ref 2712)
+JE-0023,2026-07-18,6600,DR,39887.52,Client meeting travel - Marriott Hotels
+JE-0024,2026-08-28,5000,DR,3183.25,Component parts - Globex Corporation
+JE-0025,2026-08-24,6800,DR,4122.18,Tax advisory - Dewey Cheatem & Howe
+JE-0026,2026-07-20,7000,DR,33878.25,Printer consumables - Office Depot
+JE-0027,2026-06-29,5000,DR,470.22,Raw materials batch - Acme Industrial Supply
+JE-0028,2026-08-19,6400,DR,9071.07,Water and sewer - City Power & Light
+JE-0029,2026-06-20,6300,DR,290.33,Monthly office rent - Wayne Properties
+JE-0030,2026-08-08,5000,DR,3987.95,Raw materials batch - Acme Industrial Supply
+JE-0031,2026-08-26,6700,DR,2201.75,Campaign media buy - Pied Piper Ads
+JE-0032,2026-07-01,7100,DR,1392.93,Office equipment - Tech Hardware Corp
+JE-0033,2026-08-25,5100,DR,8013.59,Shipping and handling - Northwind Logistics
+JE-0034,2026-08-31,6500,DR,420.13,Cloud hosting - Umbrella Cloud Services
+JE-0035,2026-07-09,4000,CR,5308.59,Product sale - Customer Beta
+JE-0036,2026-06-09,6300,DR,1811.69,Monthly office rent - Wayne Properties
+JE-0037,2026-08-23,7200,DR,8114.67,Monthly service fee - First National Bank
+JE-0038,2026-08-11,4100,CR,6464.01,Implementation services - Customer Delta
+JE-0039,2026-08-27,6800,DR,23785.73,Audit support - Dewey Cheatem & Howe
+JE-0040,2026-07-21,7200,DR,408.82,Wire transfer fee (ref 2713)
+JE-0041,2026-08-05,4100,CR,10199.83,Consulting services - Customer Delta
+JE-0042,2026-08-04,4100,CR,9398.34,Consulting services - Customer Delta
+JE-0043,2026-08-03,6700,DR,1646.05,Campaign media buy (ref 8575)
+JE-0044,2026-06-10,4000,CR,10365.6,Merchandise order - Customer Epsilon
+JE-0045,2026-06-17,6200,DR,11394.26,Health insurance premium - Benefits Administration Co
+JE-0046,2026-07-22,6100,DR,5038.26,Salary run - Payroll Services Inc
+JE-0047,2026-08-06,6700,DR,7680.92,Sponsored content - Pied Piper Ads
+JE-0048,2026-07-12,7100,DR,1240.0,Depreciation charge - Tech Hardware Corp
+JE-0049,2026-06-16,6100,DR,8600.0,Accrual adjustment - Payroll Services Inc
