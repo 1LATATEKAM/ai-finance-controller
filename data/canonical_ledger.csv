@@ -1,0 +1,88 @@
+bank_ref,journal_id,invoice_number,date,amount,vendor,description,tax_line,tax_confidence,tax_reason,match_source_count
+BANK-0001,JE-0001,INV-0001,2026-08-26,-3191.12,Office Depot,OFFICE DEPOT Office Depot Printer consumables  Printer consumables - Office Depot,Office Supplies,0.9,Matched rule: Office Supplies,3
+BANK-0002,,,2026-08-07,-863.13,,CITY POWER & LIGHT,Utilities,0.9,Matched rule: Utilities,1
+BANK-0003,,INV-0002,2026-07-09,-2562.95,TransGlobal Airlines,TRANSGLOBAL AIRLINES TransGlobal Airlines Conference airfare,Travel & Meals,0.9,Matched rule: Travel & Meals,2
+BANK-0004,JE-0002,INV-0003,2026-08-17,-479.96,Marriott Hotels,POS PURCHASE 7681 Marriott Hotels Team offsite hotel  Team offsite hotel (ref 6541),Travel & Meals,0.9,Matched rule: Travel & Meals,3
+BANK-0005,,,2026-06-30,-2057.46,,HOOLI MARKETING,Marketing & Advertising,0.9,Matched rule: Marketing & Advertising,1
+BANK-0006,JE-0005,,2026-08-25,-2677.13,,INITECH SOFTWARE  Saas license renewal - Initech Software,Software & Subscriptions,0.9,Matched rule: Software & Subscriptions,2
+BANK-0007,,INV-0006,2026-07-23,-10495.45,Mutual Shield Insurance,MUTUAL SHIELD INSURANCE Mutual Shield Insurance Liability insurance premium,Insurance,0.9,Matched rule: Insurance,2
+BANK-0008,,INV-0007,2026-07-18,-9585.4,Mutual Shield Insurance,MUTUAL SHIELD INSURANCE Mutual Shield Insurance Liability insurance premium,Insurance,0.9,Matched rule: Insurance,2
+BANK-0009,,INV-0008,2026-07-17,-7933.77,Globex Corporation,GLOBEX CORPORATION Globex Corporation Industrial materials,COGS - Materials,0.9,Matched rule: COGS - Materials,2
+BANK-0010,JE-0006,INV-0009,2026-06-07,-3454.3,Mutual Shield Insurance,MUTUAL SHIELD INSURANCE Mutual Shield Insurance Property insurance  Property insurance - Mutual Shield Insurance,Insurance,0.9,Matched rule: Insurance,3
+BANK-0011,,INV-0010,2026-06-12,-59709.41,Globex Corporation,PAYMENT REF 8382 Globex Corporation Packaging supplies,COGS - Materials,0.9,Matched rule: COGS - Materials,2
+BANK-0012,,,2026-07-20,-854.13,,FIRST NATIONAL BANK,Bank Fees,0.9,Matched rule: Bank Fees,1
+BANK-0013,JE-0011,INV-0013,2026-07-18,-5183.26,Benefits Administration Co,BENEFITS ADMINISTRATION CO Benefits Administration Co 401k match  401k match - Benefits Administration Co,Payroll - Benefits,0.9,Matched rule: Payroll - Benefits,3
+BANK-0014,JE-0012,INV-0014,2026-08-21,-4496.24,Acme Industrial Supply,ACME INDUSTRIAL SUPPLY Acme Industrial Supply Packaging supplies  Packaging supplies - Acme Industrial Supply,COGS - Materials,0.9,Matched rule: COGS - Materials,3
+BANK-0015,JE-0014,INV-0016,2026-07-24,-1236.92,Payroll Services Inc,PAYROLL SERVICES INC Payroll Services Inc Biweekly payroll  Biweekly payroll - Payroll Services Inc,Payroll - Salaries,0.9,Matched rule: Payroll - Salaries,3
+BANK-0016,,,2026-06-15,7096.33,,ACH DEBIT 7022,Unclassified Expense,0.3,No keyword pattern matched,1
+BANK-0017,,,2026-06-26,-1060.19,,ACH DEBIT 8626,Unclassified Expense,0.3,No keyword pattern matched,1
+BANK-0018,,INV-0021,2026-07-09,25164.22,Customer Epsilon,CUSTOMER EPSILON Customer Epsilon Merchandise order,Revenue - Product Sales,0.95,Matched Revenue - Product Sales keywords,2
+BANK-0019,JE-0017,INV-0024,2026-06-22,-2409.67,Mutual Shield Insurance,MUTUAL SHIELD INSURANCE Mutual Shield Insurance Liability insurance premium  Liability insurance premium - Mutual Shield Insurance,Insurance,0.9,Matched rule: Insurance,3
+BANK-0020,JE-0020,,2026-08-03,-905.0,,UMBRELLA CLOUD SERVICES  Annual subscription - Umbrella Cloud Services,Software & Subscriptions,0.9,Matched rule: Software & Subscriptions,2
+BANK-0021,JE-0022,INV-0027,2026-08-19,-1641.98,City Power & Light,POS PURCHASE 5639 City Power & Light Water and sewer  Water and sewer (ref 2712),Utilities,0.9,Matched rule: Utilities,3
+BANK-0022,JE-0023,INV-0028,2026-07-18,-39887.52,Marriott Hotels,MARRIOTT HOTELS Marriott Hotels Client meeting travel  Client meeting travel - Marriott Hotels,Travel & Meals,0.9,Matched rule: Travel & Meals,3
+BANK-0023,,,2026-08-08,-13962.99,,PAYROLL SERVICES INC,Payroll - Salaries,0.9,Matched rule: Payroll - Salaries,1
+BANK-0024,,,2026-07-26,7681.35,,CUSTOMER GAMMA,Revenue - Services,0.9,Revenue pattern + positive flow,1
+BANK-0025,,,2026-07-24,7784.4,,CUSTOMER GAMMA,Revenue - Services,0.9,Revenue pattern + positive flow,1
+BANK-0026,JE-0025,INV-0029,2026-08-24,-4122.18,Dewey Cheatem & Howe,DEWEY CHEATEM & HOWE Dewey Cheatem & Howe Tax advisory  Tax advisory - Dewey Cheatem & Howe,Professional Services,0.9,Matched rule: Professional Services,3
+BANK-0027,JE-0026,INV-0031,2026-07-24,-33878.25,Office Depot,OFFICE DEPOT Office Depot Printer consumables  Printer consumables - Office Depot,Office Supplies,0.9,Matched rule: Office Supplies,3
+BANK-0028,JE-0028,INV-0032,2026-08-20,-9071.07,City Power & Light,CITY POWER & LIGHT City Power & Light Water and sewer  Water and sewer - City Power & Light,Utilities,0.9,Matched rule: Utilities,3
+BANK-0029,JE-0029,INV-0033,2026-06-20,-295.26,Wayne Properties,WAYNE PROPERTIES Wayne Properties Monthly office rent  Monthly office rent - Wayne Properties,Rent - Office,0.9,Matched rule: Rent - Office,3
+BANK-0030,,,2026-07-21,12968.73,,CUSTOMER EPSILON,Revenue - Product Sales,0.95,Matched Revenue - Product Sales keywords,1
+BANK-0031,JE-0031,INV-0035,2026-08-26,-2201.75,Pied Piper Ads,PIED PIPER ADS Pied Piper Ads Campaign media buy  Campaign media buy - Pied Piper Ads,Marketing & Advertising,0.9,Matched rule: Marketing & Advertising,3
+BANK-0032,JE-0032,,2026-07-01,-1392.93,,TECH HARDWARE CORP  Office equipment - Tech Hardware Corp,Equipment & Depreciation,0.9,Matched rule: Equipment & Depreciation,2
+BANK-0033,JE-0033,INV-0036,2026-08-25,-8013.59,Northwind Logistics,NORTHWIND LOGISTICS Northwind Logistics Shipping and handling  Shipping and handling - Northwind Logistics,COGS - Freight,0.9,Matched rule: COGS - Freight,3
+BANK-0034,,INV-0037,2026-06-06,-283.24,Hooli Marketing,HOOLI MARKETING Hooli Marketing Print advertising,Marketing & Advertising,0.9,Matched rule: Marketing & Advertising,2
+BANK-0035,,INV-0038,2026-06-06,-276.74,Hooli Marketing,HOOLI MARKETING Hooli Marketing Print advertising,Marketing & Advertising,0.9,Matched rule: Marketing & Advertising,2
+BANK-0036,JE-0036,INV-0039,2026-06-09,-1811.69,Wayne Properties,WAYNE PROPERTIES Wayne Properties Monthly office rent  Monthly office rent - Wayne Properties,Rent - Office,0.9,Matched rule: Rent - Office,3
+BANK-0037,JE-0037,INV-0040,2026-08-23,-8114.67,First National Bank,FIRST NATIONAL BANK First National Bank Monthly service fee  Monthly service fee - First National Bank,Bank Fees,0.9,Matched rule: Bank Fees,3
+BANK-0038,JE-0038,INV-0041,2026-08-11,6464.01,Customer Delta,CUSTOMER DELTA Customer Delta Implementation services  Implementation services - Customer Delta,Revenue - Services,0.9,Revenue pattern + positive flow,3
+BANK-0039,JE-0039,INV-0042,2026-08-31,-23785.73,Dewey Cheatem & Howe,DEWEY CHEATEM & HOWE Dewey Cheatem & Howe Audit support  Audit support - Dewey Cheatem & Howe,Professional Services,0.9,Matched rule: Professional Services,3
+BANK-0040,JE-0040,INV-0043,2026-07-21,-408.82,First National Bank,ACH DEBIT 7372 First National Bank Wire transfer fee  Wire transfer fee (ref 2713),Bank Fees,0.9,Matched rule: Bank Fees,3
+BANK-0041,JE-0043,INV-0044,2026-08-03,-1646.05,Hooli Marketing,CARD TRANSACTION 2273 Hooli Marketing Campaign media buy  Campaign media buy (ref 8575),Marketing & Advertising,0.9,Matched rule: Marketing & Advertising,3
+BANK-0042,JE-0044,INV-0045,2026-06-10,10365.6,Customer Epsilon,CUSTOMER EPSILON Customer Epsilon Merchandise order  Merchandise order - Customer Epsilon,Revenue - Product Sales,0.95,Matched Revenue - Product Sales keywords,3
+BANK-0043,JE-0045,,2026-06-17,-11394.26,,BENEFITS ADMINISTRATION CO  Health insurance premium - Benefits Administration Co,Payroll - Benefits,0.9,Matched rule: Payroll - Benefits,2
+BANK-0044,JE-0046,INV-0046,2026-07-22,-5043.19,Payroll Services Inc,PAYROLL SERVICES INC Payroll Services Inc Salary run  Salary run - Payroll Services Inc,Payroll - Salaries,0.9,Matched rule: Payroll - Salaries,3
+BANK-0045,JE-0047,,2026-08-06,-7682.85,,PIED PIPER ADS  Sponsored content - Pied Piper Ads,Marketing & Advertising,0.9,Matched rule: Marketing & Advertising,2
+BANK-0046,,,2026-07-01,43031.32,,PAYMENT REF 2294,Unclassified Expense,0.3,No keyword pattern matched,1
+BANK-0047,,,2026-08-28,-12.0,,FIRST NATIONAL BANK,Bank Fees,0.9,Matched rule: Bank Fees,1
+BANK-0048,,,2026-06-26,-25.0,,FIRST NATIONAL BANK,Bank Fees,0.9,Matched rule: Bank Fees,1
+BANK-0049,,,2026-06-05,84.32,,FIRST NATIONAL BANK,Bank Fees,0.9,Matched rule: Bank Fees,1
+BANK-0050,,,2026-06-06,220.0,,GLOBEX CORPORATION,COGS - Materials,0.9,Matched rule: COGS - Materials,1
+,JE-0003,,2026-08-06,41332.7,,Merchandise order (ref 4967),Revenue - Product Sales,0.95,Matched Revenue - Product Sales keywords,1
+,JE-0004,,2026-08-22,1681.76,,Team offsite hotel - Hertz Car Rental,Rent - Office,0.9,Matched rule: Rent - Office,1
+,JE-0007,,2026-06-18,4390.24,,Monthly office rent - Wayne Properties,Rent - Office,0.9,Matched rule: Rent - Office,1
+,JE-0008,,2026-06-22,4018.59,,Cloud hosting - Initech Software,Software & Subscriptions,0.9,Matched rule: Software & Subscriptions,1
+,JE-0009,,2026-08-31,2204.69,,Industrial materials - Globex Corporation,COGS - Materials,0.9,Matched rule: COGS - Materials,1
+,JE-0010,,2026-08-06,4571.67,,Consulting services - Customer Delta,Revenue - Services,0.9,Revenue pattern + positive flow,1
+,JE-0013,,2026-06-12,983.13,,Print advertising - Hooli Marketing,Marketing & Advertising,0.9,Matched rule: Marketing & Advertising,1
+,JE-0015,,2026-08-30,2935.72,,Electricity bill - City Power & Light,Utilities,0.9,Matched rule: Utilities,1
+,JE-0016,,2026-06-27,454.96,,Internet service (ref 1713),Revenue - Services,0.9,Revenue pattern + positive flow,1
+,JE-0018,,2026-08-03,7095.55,,Wire transfer fee - First National Bank,Bank Fees,0.9,Matched rule: Bank Fees,1
+,JE-0019,,2026-07-30,6739.65,,Wire transfer fee - First National Bank,Bank Fees,0.9,Matched rule: Bank Fees,1
+,JE-0021,,2026-07-19,9207.19,,Printer consumables - Office Depot,Office Supplies,0.9,Matched rule: Office Supplies,1
+,JE-0024,,2026-08-28,3183.25,,Component parts - Globex Corporation,COGS - Materials,0.9,Matched rule: COGS - Materials,1
+,JE-0027,,2026-06-29,470.22,,Raw materials batch - Acme Industrial Supply,COGS - Materials,0.9,Matched rule: COGS - Materials,1
+,JE-0030,,2026-08-08,3987.95,,Raw materials batch - Acme Industrial Supply,COGS - Materials,0.9,Matched rule: COGS - Materials,1
+,JE-0034,,2026-08-31,420.13,,Cloud hosting - Umbrella Cloud Services,Revenue - Services,0.9,Revenue pattern + positive flow,1
+,JE-0035,,2026-07-09,5308.59,,Product sale - Customer Beta,Revenue - Services,0.9,Revenue pattern + positive flow,1
+,JE-0041,,2026-08-05,10199.83,,Consulting services - Customer Delta,Revenue - Services,0.9,Revenue pattern + positive flow,1
+,JE-0042,,2026-08-04,9398.34,,Consulting services - Customer Delta,Revenue - Services,0.9,Revenue pattern + positive flow,1
+,JE-0048,,2026-07-12,1240.0,,Depreciation charge - Tech Hardware Corp,Equipment & Depreciation,0.9,Matched rule: Equipment & Depreciation,1
+,JE-0049,,2026-06-16,8600.0,,Accrual adjustment - Payroll Services Inc,Revenue - Services,0.9,Revenue pattern + positive flow,1
+,,INV-0004,2026-08-06,41332.7,Customer Epsilon,Merchandise order Customer Epsilon,Revenue - Product Sales,0.95,Matched Revenue - Product Sales keywords,1
+,,INV-0005,2026-08-22,1681.76,Hertz Car Rental,Team offsite hotel Hertz Car Rental,Rent - Office,0.9,Matched rule: Rent - Office,1
+,,INV-0011,2026-08-31,2204.69,Globex Corporation,Industrial materials Globex Corporation,COGS - Materials,0.9,Matched rule: COGS - Materials,1
+,,INV-0012,2026-08-06,4571.67,Customer Delta,Consulting services Customer Delta,Revenue - Services,0.9,Revenue pattern + positive flow,1
+,,INV-0015,2026-06-12,983.13,Hooli Marketing,Print advertising Hooli Marketing,Marketing & Advertising,0.9,Matched rule: Marketing & Advertising,1
+,,INV-0017,2026-08-30,2935.72,City Power & Light,Electricity bill City Power & Light,Utilities,0.9,Matched rule: Utilities,1
+,,INV-0018,2026-08-06,34917.65,Dewey Cheatem & Howe,Tax advisory Dewey Cheatem & Howe,Professional Services,0.9,Matched rule: Professional Services,1
+,,INV-0019,2026-07-06,34400.49,Acme Industrial Supply,Raw materials batch Acme Industrial Supply,COGS - Materials,0.9,Matched rule: COGS - Materials,1
+,,INV-0020,2026-06-06,6019.0,Customer Beta,Product sale Customer Beta,Revenue - Services,0.9,Revenue pattern + positive flow,1
+,,INV-0022,2026-07-19,975.07,Wayne Properties,Parking lease Wayne Properties,Rent - Office,0.9,Matched rule: Rent - Office,1
+,,INV-0023,2026-07-18,960.03,Wayne Properties,Parking lease Wayne Properties,Rent - Office,0.9,Matched rule: Rent - Office,1
+,,INV-0025,2026-07-21,2315.85,Pied Piper Ads,Sponsored content Pied Piper Ads,Marketing & Advertising,0.9,Matched rule: Marketing & Advertising,1
+,,INV-0026,2026-07-19,9207.19,Office Depot,Printer consumables Office Depot,Office Supplies,0.9,Matched rule: Office Supplies,1
+,,INV-0030,2026-06-13,20653.91,Dewey Cheatem & Howe,Tax advisory Dewey Cheatem & Howe,Professional Services,0.9,Matched rule: Professional Services,1
+,,INV-0034,2026-08-08,3987.95,Acme Industrial Supply,Raw materials batch Acme Industrial Supply,COGS - Materials,0.9,Matched rule: COGS - Materials,1
+,,INV-0047,2026-08-12,3400.0,Acme Industrial Supply,"Pending delivery, not yet paid Acme Industrial Supply",COGS - Materials,0.9,Matched rule: COGS - Materials,1

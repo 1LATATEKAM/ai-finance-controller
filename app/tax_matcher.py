@@ -2,23 +2,28 @@ import pandas as pd
 import numpy as np
 
 TAX_RULES = {
+    "Revenue - Product Sales": [
+        "product sales", "merchandise", "merchandise order", "goods sale", 
+        "store sales", "customer epsilon", "hardware sales", "units sold"
+    ],
     "Revenue - Services": [
         "consulting revenue", "service fee", "client payment", "retainer", 
-        "invoiced service", "platform revenue", "sales", "customer payment", "services"
+        "invoiced service", "platform revenue", "sales", "customer payment", "services",
+        "consulting", "implementation"
     ],
     "Revenue - Interest": [
         "interest income", "yield", "dividend", "interest deposit", "interest earned"
     ],
     "COGS - Materials": [
         "packaging", "industrial materials", "raw materials", "globex", "acme industrial",
-        "supplies for production", "packaging supplies", "materials"
+        "supplies for production", "packaging supplies", "materials", "production supplies"
     ],
     "COGS - Freight": [
-        "freight", "shipping", "fedex", "ups", "logistics", "cargo", "carrier"
+        "freight", "shipping", "fedex", "ups", "logistics", "cargo", "carrier", "delivery fee"
     ],
     "Marketing & Advertising": [
-        "hooli marketing", "marketing", "advertising", "meta", "google ads", 
-        "linkedin ads", "billboard", "pr agency", "promotions", "ad spend"
+        "hooli marketing", "pied piper ads", "marketing", "advertising", "meta", "google ads", 
+        "linkedin ads", "billboard", "pr agency", "promotions", "ad spend", "campaign media buy", "campaign"
     ],
     "Bank Fees": [
         "first national bank", "wire fee", "bank charge", "service charge", 
@@ -62,17 +67,21 @@ TAX_RULES = {
     ]
 }
 
-def classify_tax_line(description: str, vendor: str = "", amount: float = 0.0) -> tuple:
+def classify_tax_line(description: str, vendor: str = "", amount: float = 0.0, account_code: str = "") -> tuple:
     text = f"{str(description)} {str(vendor)}".lower()
-    amt = float(amount)
+    amt = float(amount) if amount else 0.0
 
-    # Inflows
+    # 1. Product Sales check FIRST before Services check
+    if any(k in text for k in TAX_RULES["Revenue - Product Sales"]):
+        return "Revenue - Product Sales", 0.95, "Matched Revenue - Product Sales keywords"
+
+    # 2. Inflows
     if amt > 0 and ("interest" in text or "yield" in text):
         return "Revenue - Interest", 0.95, "Interest keyword + positive flow"
     if amt > 0 and any(k in text for k in ["revenue", "client", "customer", "invoice paid", "service"]):
         return "Revenue - Services", 0.90, "Revenue pattern + positive flow"
 
-    # Specific precedence ordering (e.g. COGS Materials before general Office Supplies)
+    # 3. Specific categories
     for category in [
         "COGS - Materials", "COGS - Freight", "Marketing & Advertising", 
         "Bank Fees", "Software & Subscriptions", "Rent - Office", 
@@ -93,7 +102,7 @@ def build_unified_ledger(bank_df, ledger_df, invoice_df, bl_res, bi_res):
     processed_ledger = set()
     processed_invoices = set()
 
-    # 1. Process Bank transactions with their matches
+    # 1. Bank records
     for _, b_row in bank_df.iterrows():
         b_ref = b_row['bank_ref']
         processed_bank.add(b_ref)
@@ -115,15 +124,19 @@ def build_unified_ledger(bank_df, ledger_df, invoice_df, bl_res, bi_res):
         vendor = ""
         amount = b_row.get('amount')
         date = b_row.get('date')
+        account_code = l_row.get('account_code', '') if l_row is not None else ""
 
+        # Enrich description and vendor from matched sources
         if i_row is not None:
             vendor = i_row.get('vendor', '')
-            desc = f"{desc} {i_row.get('description', '')}"
-        elif l_row is not None:
-            vendor = l_row.get('vendor', '')
-            desc = f"{desc} {l_row.get('description', '')}"
+            desc = f"{desc} {vendor} {i_row.get('description', '')}"
+        if l_row is not None:
+            l_ven = l_row.get('vendor', '')
+            if l_ven and not vendor:
+                vendor = l_ven
+            desc = f"{desc} {l_ven} {l_row.get('description', '')}"
 
-        tax_line, conf, reason = classify_tax_line(desc, vendor, amount)
+        tax_line, conf, reason = classify_tax_line(desc, vendor, amount, account_code)
 
         unified_records.append({
             'bank_ref': b_ref,
@@ -139,15 +152,16 @@ def build_unified_ledger(bank_df, ledger_df, invoice_df, bl_res, bi_res):
             'match_source_count': 1 + (1 if matched_journal_id else 0) + (1 if matched_inv_num else 0)
         })
 
-    # 2. Add orphan Ledger records
+    # 2. Orphan Ledger entries
     for _, l_row in ledger_df.iterrows():
         j_id = l_row['journal_id']
         if j_id not in processed_ledger:
             processed_ledger.add(j_id)
-            desc = l_row.get('description', '')
+            desc = f"{l_row.get('description', '')} {l_row.get('vendor', '')}"
             vendor = l_row.get('vendor', '')
             amt = l_row.get('amount', 0.0)
-            tax_line, conf, reason = classify_tax_line(desc, vendor, amt)
+            acct = l_row.get('account_code', '')
+            tax_line, conf, reason = classify_tax_line(desc, vendor, amt, acct)
             unified_records.append({
                 'bank_ref': None,
                 'journal_id': j_id,
@@ -155,22 +169,22 @@ def build_unified_ledger(bank_df, ledger_df, invoice_df, bl_res, bi_res):
                 'date': l_row.get('date'),
                 'amount': amt,
                 'vendor': vendor,
-                'description': desc,
+                'description': desc.strip(),
                 'tax_line': tax_line,
                 'tax_confidence': conf,
                 'tax_reason': reason,
                 'match_source_count': 1
             })
 
-    # 3. Add orphan Invoice records
+    # 3. Orphan Invoices
     for _, i_row in invoice_df.iterrows():
         inv_num = i_row['invoice_number']
         if inv_num not in processed_invoices:
             processed_invoices.add(inv_num)
-            desc = i_row.get('description', '')
+            desc = f"{i_row.get('description', '')} {i_row.get('vendor', '')}"
             vendor = i_row.get('vendor', '')
             amt = i_row.get('amount', 0.0)
-            tax_line, conf, reason = classify_tax_line(desc, vendor, amt)
+            tax_line, conf, reason = classify_tax_line(desc, vendor, amt, "")
             unified_records.append({
                 'bank_ref': None,
                 'journal_id': None,
@@ -178,7 +192,7 @@ def build_unified_ledger(bank_df, ledger_df, invoice_df, bl_res, bi_res):
                 'date': i_row.get('issue_date', i_row.get('due_date')),
                 'amount': amt,
                 'vendor': vendor,
-                'description': desc,
+                'description': desc.strip(),
                 'tax_line': tax_line,
                 'tax_confidence': conf,
                 'tax_reason': reason,
