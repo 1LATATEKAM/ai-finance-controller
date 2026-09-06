@@ -2,6 +2,9 @@
 
 An autonomous 3-way multi-source reconciliation, cash position engine, and tax-line classifier with verification-first exception routing.
 
+## Demo Video
+- **Walkthrough Pitch (YouTube):** [Watch the 3-Minute Demo](https://youtu.be/kWnVm3CvZjM)
+
 ## Loop Closed
 1. **Multi-Source Ingestion:** Ingests unlinked raw files (`bank_statement.csv`, `internal_ledger.csv`, `invoices.csv`).
 2. **Reconciliation Engine:** Resolves date shifts, fee deductions, and vendor aliases with zero false positives.
